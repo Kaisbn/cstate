@@ -1,0 +1,36 @@
+name: Build static files
+
+on:
+  push
+    branches:
+    - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: https://status.kaisbn.fr
+    container:
+      image: registry.gitlab.com/pages/hugo/hugo_extended:0.65.3
+    steps:
+      - uses: actions/checkout@v3
+      - name: hugo
+        shell: bash
+        run: |
+          hugo
+      - name: Save artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: public
+          path: |
+            public
+      - name: Download public folder
+        uses: actions/download-artifact@v3
+        with:
+          name: public
+      - run: .github/workflows/push.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.github_token }}
+          DEPLOY_TOKEN: ${{ secrets.deploy_token }}
+
