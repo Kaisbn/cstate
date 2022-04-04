@@ -16,6 +16,7 @@ git config --global init.defaultBranch main
 
 git init
 git checkout -b "$target_branch"
+echo "status.kaisbn.fr" > CNAME
 
 git add *
 git commit -m "updated GitHub Pages"
