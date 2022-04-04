@@ -6,37 +6,18 @@ on:
       - main
 
 jobs:
-  pull:
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: https://status.kaisbn.fr
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: recursive
-          token: ${{ secrets.deploy_token }}
-      - name: Upload submodule artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: theme-cstate
-          path: |
-            themes/cstate
-
   build:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: https://status.kaisbn.fr
     container:
-      image: registry.gitlab.com/pages/hugo/hugo_extended:0.65.3
-    needs: pull
+      image: registry.gitlab.com/pages/hugo/hugo_extended:0.96.0
     steps:
-      - uses: actions/checkout@v3
-      - name: Download submodule
-        uses: actions/download-artifact@v3
+      - uses: actions/checkout@v2
         with:
-          name: theme-cstate
+          submodules: recursive
+          token: ${{ secrets.deploy_token }}
       - name: Build
         run: hugo
       - name: Save artifacts

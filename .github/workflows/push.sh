@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 set -eu
 
@@ -13,13 +13,18 @@ cd "$GITHUB_WORKSPACE"
 git config user.name "$GITHUB_ACTOR"
 git config user.email "${GITHUB_ACTOR}@bots.github.com"
 
-git add "$build_dir"
+git fetch
+git checkout "$target_branch"
 
+git add -A "$build_dir"
 git commit -m "updated GitHub Pages"
 if [ $? -ne 0 ]; then
     echo "nothing to commit"
     exit 0
 fi
+
+git stash
+git rebase "${remote_name}/${main_branch}"
 
 git remote set-url "$remote_name" "$repo_uri" # includes access token
 git push --force-with-lease "$remote_name" "$target_branch"
