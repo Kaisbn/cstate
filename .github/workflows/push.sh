@@ -8,23 +8,22 @@ main_branch="main"
 target_branch="gh-pages"
 build_dir="public"
 
-cd "$GITHUB_WORKSPACE"
+cd "$GITHUB_WORKSPACE/$build_dir"
 
-git config user.name "$GITHUB_ACTOR"
-git config user.email "${GITHUB_ACTOR}@bots.github.com"
+git config --global user.name "$GITHUB_ACTOR"
+git config --global user.email "${GITHUB_ACTOR}@bots.github.com"
+git config --global init.defaultBranch main
 
-git fetch
-git checkout "$target_branch"
+git init
+git checkout -b "$target_branch"
 
-git add -A "$build_dir"
+git add *
 git commit -m "updated GitHub Pages"
 if [ $? -ne 0 ]; then
     echo "nothing to commit"
     exit 0
 fi
 
-git stash
-git rebase "${remote_name}/${main_branch}"
-
-git remote set-url "$remote_name" "$repo_uri" # includes access token
+git remote add "$remote_name" "$repo_uri" # includes access token
+git fetch
 git push --force-with-lease "$remote_name" "$target_branch"
