@@ -1,0 +1,147 @@
+{
+  "is": "index",
+  "cStateVersion": "5.3",
+  "apiVersion": "2.0",
+  "title": "HomeLab Status",
+  "languageCodeHTML": "en",
+  "languageCode": "en",
+  "baseURL": "https://status.kaisbn.fr/", 
+  "description": "Status monitoring page with incident record.",
+  "summaryStatus": "ok", 
+  "categories": [
+      {
+        "name": "NAS",
+        "description": "Custom-build machine",
+        "hideTitle": false,
+        "closedByDefault": false
+      }
+    ,
+      {
+        "name": "RPi",
+        "description": "Raspberry Pi 4 with 4GB RAM",
+        "hideTitle": false,
+        "closedByDefault": false
+      }
+    ,
+      {
+        "name": "Uncategorized",
+        "hideTitle": true,
+        "closedByDefault": false
+      }
+    
+  ],
+  "systems": [
+    
+      {
+        "name": "Authentication",
+        "category": "RPi", 
+        
+        "status": "ok",
+        
+        "unresolvedIssues": []
+        
+      },
+      {
+        "name": "Traefik (Internet)",
+        "description": "Load balancer routing internet-facing services",
+        "category": "NAS", 
+        
+        "status": "ok",
+        
+        "unresolvedIssues": []
+        
+      },
+      {
+        "name": "Traefik (Local)",
+        "description": "Load balancer routing local services",
+        "category": "RPi", 
+        
+        "status": "ok",
+        
+        "unresolvedIssues": []
+        
+      },
+      {
+        "name": "VPN",
+        "description": "VPN server to access local services",
+        "category": "RPi", 
+        
+        "status": "ok",
+        
+        "unresolvedIssues": []
+        
+      },
+      {
+        "name": "Plex",
+        "description": "Plex media server",
+        "category": "NAS", 
+        
+        "status": "ok",
+        
+        "unresolvedIssues": []
+        
+      },
+      {
+        "name": "Watcher",
+        "description": "Automated movie torrent searcher and snatcher.",
+        "category": "NAS", 
+        
+        "status": "ok",
+        
+        "unresolvedIssues": []
+        
+      },
+      {
+        "name": "Medusa",
+        "description": "Automated TV show torrent searcher and snatcher.",
+        "category": "NAS", 
+        
+        "status": "ok",
+        
+        "unresolvedIssues": []
+        
+      },
+      {
+        "name": "Jackett",
+        "description": "Torrent indexer",
+        "category": "NAS", 
+        
+        "status": "ok",
+        
+        "unresolvedIssues": []
+        
+      },
+      {
+        "name": "Transmission",
+        "description": "Torrent client",
+        "category": "NAS", 
+        
+        "status": "ok",
+        
+        "unresolvedIssues": []
+        
+      },
+      {
+        "name": "Vacuum",
+        "category": "<no value>", 
+        
+        "status": "ok",
+        
+        "unresolvedIssues": []
+        
+      }
+  ],
+  
+  
+  "buildDate": "2022-04-04",
+  "buildTime": "19:17",
+  "buildTimezone": "UTC",
+  "colorBrand": "#0a0c0f",
+  "colorOk": "#008000",
+  "colorDisrupted": "#cc4400",
+  "colorDown": "#e60000",
+  "colorNotice": "#24478f",
+  "alwaysKeepBrandColor": "true",
+  "logo": "https://status.kaisbn.fr/logo.png",
+  "googleAnalytics": "UA-00000000-1"
+}
